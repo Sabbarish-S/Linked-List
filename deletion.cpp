@@ -65,6 +65,64 @@ Node* removeTail(Node* head)
     delete temp->next;
     temp->next = nullptr;
     return head;
+}
+
+Node* removeKpos(Node* head, int k) // counter increase
+{
+    if(head == NULL) return head;
+    if(k == 1){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    int counter = 0;
+    Node* temp = head;
+    Node* prev = NULL;
+    while(temp)
+    {
+        counter++;
+        if(counter == k)
+        {
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+
+    }
+    return head;
+
+
+}
+
+Node* removeKel(Node* head, int el) // counter increase
+{
+    if(head == NULL) return head;
+    if(head->data == el){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+   
+    Node* temp = head;
+    Node* prev = NULL;
+    while(temp)
+    {
+       
+        if(temp->data == el)
+        {
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+
+    }
+    return head;
 
 
 }
@@ -79,7 +137,9 @@ int main()
     cout<<endl;
     Node* head = convertArr2LL(arr);
     //head=removehead(head);
-    head = removeTail(head);
+    //head = removeTail(head);
+    //head = removeKpos(head,5);
+    head = removeKel(head,2);
     cout<<"After the removal of tail : "<<endl;
     print(head);
 }
