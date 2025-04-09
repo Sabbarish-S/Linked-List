@@ -29,9 +29,21 @@ Node* convertArr2DLL(vector<int> arr)
 {
     Node* head = new Node(arr[0]);
     Node* prev = head;
-    for(int i = 0; i < arr.size();i++)
+    for(int i = 1; i < arr.size();i++)
     {
-        Node* temp = new Node(arr[i],)
+        Node* temp = new Node(arr[i]);
+        prev->next = temp;
+        prev=temp;
+    }
+    return head;
+}
+
+void print(Node* head)
+{
+    while(head)
+    {
+        cout <<head->data<<" ";
+        head = head->next;
     }
 }
 
@@ -39,5 +51,6 @@ int main()
 {
     vector<int> arr = {2,43,1,72, 93};
     Node* head = convertArr2DLL(arr);
+    print(head);
 
 }
